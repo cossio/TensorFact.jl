@@ -12,7 +12,7 @@ This package is registered. Install with:
 
 ```julia
 import Pkg
-Pkg.add("TensorFact")
+Pkg.add("TensorFactorizations")
 ```
 
 This package does not export any symbols.
