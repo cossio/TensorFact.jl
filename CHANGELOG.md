@@ -9,3 +9,4 @@ All notable changes to this project will be documented in this file. The format 
 - Register v0.1.0.
 - This CHANGELOG file.
 - Factorization of 3-dimensional tensors.
+- Rename TensorFact.jl to TensorFactorizations.jl.

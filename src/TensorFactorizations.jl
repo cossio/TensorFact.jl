@@ -1,4 +1,4 @@
-module TensorFact
+module TensorFactorizations
 
 using LinearAlgebra: I
 

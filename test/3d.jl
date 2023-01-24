@@ -1,5 +1,5 @@
 using Test: @test, @testset, @inferred
-using TensorFact: als
+using TensorFactorizations: als
 using Statistics: cor
 
 @testset "3-dimensional case" begin
