@@ -37,7 +37,7 @@ function als(X::AbstractArray{<:Real,3}; rank::Int=1, γ::Real=0, niter::Int=100
     return (A, B, C), errors
 end
 
-function als(X::AbstractArray{<:Real,3}, mask::AbstractArray{<:Real,3}; rank::Int=1, γ::Real=0, niter::Int=100)
+function als(X::AbstractArray{<:Any,3}, mask::AbstractArray{<:Any,3}; rank::Int=1, γ::Real=0, niter::Int=100)
     @assert size(X) == size(mask)
 
     N, M, K = size(X)
