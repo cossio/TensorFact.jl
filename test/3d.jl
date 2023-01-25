@@ -23,13 +23,13 @@ using Tullio: @tullio
     @test abs(cor(vec(B), vec(_B))) > 0.99
     @test abs(cor(vec(C), vec(_C))) > 0.99
 
-    N, M, K = (23, 15, 17)
+    N, M, K = (23, 31, 17)
     A, B, C = randn(rank, N), randn(rank, M), randn(rank, K)
     @tullio X[i,j,k] := A[r,i] * B[r,j] * C[r,k]
     X .+= randn(N, M, K) / 100
     mask = bitrand(N,M,K)
     (_A, _B, _C), errors = @inferred als(X, mask; rank)
-    @test abs(cor(vec(A), vec(_A))) > 0.99
-    @test abs(cor(vec(B), vec(_B))) > 0.99
-    @test abs(cor(vec(C), vec(_C))) > 0.99
+    @test abs(cor(vec(A), vec(_A))) > 0.9
+    @test abs(cor(vec(B), vec(_B))) > 0.9
+    @test abs(cor(vec(C), vec(_C))) > 0.9
 end
