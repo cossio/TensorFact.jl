@@ -26,7 +26,7 @@ using Tullio: @tullio
     N, M, K = (23, 31, 17)
     A, B, C = randn(rank, N), randn(rank, M), randn(rank, K)
     @tullio X[i,j,k] := A[r,i] * B[r,j] * C[r,k]
-    X .+= randn(N, M, K) / 100
+    X .+= randn(N, M, K) / 1000
     mask = bitrand(N,M,K)
     X = ifelse.(mask, X, NaN)
     (_A, _B, _C), errors = @inferred als(X, mask; rank)

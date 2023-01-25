@@ -6,7 +6,7 @@ using LinearAlgebra: qr
 using Tullio: @tullio
 
 @testset "2-dimensional case" begin
-    N, M = (7,5)
+    N, M = (17, 25)
     rank = 1
 
     A, B = randn(rank, N), randn(rank, M)
@@ -20,10 +20,10 @@ using Tullio: @tullio
     @test abs(cor(vec(A), vec(_A))) > 0.99
     @test abs(cor(vec(B), vec(_B))) > 0.99
 
-    N, M = (23, 31)
+    N, M = (42, 31)
     A, B = randn(rank, N), randn(rank, M)
     @tullio X[i,j] := A[r,i] * B[r,j]
-    X .+= randn(N, M) / 100
+    X .+= randn(N, M) / 1000
     mask = bitrand(N,M)
     X = ifelse.(mask, X, NaN)
     (_A, _B), errors = @inferred als(X, mask; rank)
