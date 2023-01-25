@@ -28,6 +28,7 @@ using Tullio: @tullio
     @tullio X[i,j,k] := A[r,i] * B[r,j] * C[r,k]
     X .+= randn(N, M, K) / 100
     mask = bitrand(N,M,K)
+    X = ifelse.(mask, X, NaN)
     (_A, _B, _C), errors = @inferred als(X, mask; rank)
     @test abs(cor(vec(A), vec(_A))) > 0.9
     @test abs(cor(vec(B), vec(_B))) > 0.9

@@ -52,21 +52,21 @@ function als(X::AbstractArray{<:Real,3}, mask::AbstractArray{<:Real,3}; rank::In
 
     for iter in 1:niter
         @tullio Ga[r,p,i] := mask[i,j,k] * B[r,j] * B[p,j] * C[r,k] * C[p,k]
-        Ga .+= γ * reshape(I(rank), 1)
+        Ga .+= γ * reshape(I(rank), rank, rank, 1)
         @tullio Ya[p,i] := X_mask[i,j,k] * B[p,j] * C[p,k]
         for i in 1:N
             A[:,i] .= Ga[:,:,i] \ Ya[:,i]
         end
 
         @tullio Gb[r,p,j] := mask[i,j,k] * A[r,i] * A[p,i] * C[r,k] * C[p,k]
-        Gb .+= γ * reshape(I(rank), 1)
+        Gb .+= γ * reshape(I(rank), rank, rank, 1)
         @tullio Yb[p,j] := X_mask[i,j,k] * A[p,i] * C[p,k]
         for j in 1:M
             B[:,j] .= Gb[:,:,j] \ Yb[:,j]
         end
 
         @tullio Gc[r,p,k] := mask[i,j,k] * A[r,i] * A[p,i] * B[r,j] * B[p,j]
-        Gc .+= γ * reshape(I(rank), 1)
+        Gc .+= γ * reshape(I(rank), rank, rank, 1)
         @tullio Yc[p,k] := X_mask[i,j,k] * A[p,i] * B[p,j]
         for k in 1:K
             C[:,k] .= Gc[:,:,k] \ Yc[:,k]
