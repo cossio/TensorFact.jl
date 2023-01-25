@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## Unreleased
 
+- Fix masked case.
+
 ## v0.1.0
 
 - Register v0.1.0.

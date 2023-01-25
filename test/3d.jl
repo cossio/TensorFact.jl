@@ -1,19 +1,35 @@
 using Test: @test, @testset, @inferred
 using TensorFactorizations: als
 using Statistics: cor
+using Random: bitrand
+using Tullio: @tullio
 
 @testset "3-dimensional case" begin
-    n, m, k = (7,5,9)
-    r = 1
+    N, M, K = (7,5,9)
+    rank = 1
 
-    A, B, C = randn(r, n), randn(r, m), randn(r, k)
+    A, B, C = randn(rank, N), randn(rank, M), randn(rank, K)
+    @tullio X[i,j,k] := A[r,i] * B[r,j] * C[r,k]
+    X .+= randn(N, M, K) / 100
 
-    X = reshape(sum(reshape(A, r, n, 1, 1) .* reshape(B, r, 1, m, 1) .* reshape(C, r, 1, 1, k); dims=1), n, m, k) .+ randn(n, m, k) / 100
-
-    (_A, _B, _C), errors = @inferred als(X, r)
-
+    (_A, _B, _C), errors = @inferred als(X; rank)
     @test abs(cor(vec(A), vec(_A))) > 0.99
     @test abs(cor(vec(B), vec(_B))) > 0.99
     @test abs(cor(vec(C), vec(_C))) > 0.99
 
+    mask = ones(N,M,K)
+    (_A, _B, _C), errors = @inferred als(X, mask; rank)
+    @test abs(cor(vec(A), vec(_A))) > 0.99
+    @test abs(cor(vec(B), vec(_B))) > 0.99
+    @test abs(cor(vec(C), vec(_C))) > 0.99
+
+    N, M, K = (23, 15, 17)
+    A, B, C = randn(rank, N), randn(rank, M), randn(rank, K)
+    @tullio X[i,j,k] := A[r,i] * B[r,j] * C[r,k]
+    X .+= randn(N, M, K) / 100
+    mask = bitrand(N,M,K)
+    (_A, _B, _C), errors = @inferred als(X, mask; rank)
+    @test abs(cor(vec(A), vec(_A))) > 0.99
+    @test abs(cor(vec(B), vec(_B))) > 0.99
+    @test abs(cor(vec(C), vec(_C))) > 0.99
 end
