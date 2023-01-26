@@ -6,7 +6,7 @@
 Tensor factorization by alternating least squares. Optionally give a binary `mask` to select
 observed data-points.
 """
-function als(X::AbstractArray{<:Real,3}; rank::Int=1, γ::Real=0, niter::Int=100)
+function als(X::Tensor{3}; rank::Int=1, γ::Real=0, niter::Int=100)
     n, m, k = size(X)
 
     A = randn(rank, n)
@@ -37,17 +37,23 @@ function als(X::AbstractArray{<:Real,3}; rank::Int=1, γ::Real=0, niter::Int=100
     return (A, B, C), errors
 end
 
-function als(X::AbstractArray{<:Any,3}, mask::AbstractArray{<:Any,3}; rank::Int=1, γ::Real=0, niter::Int=100)
+function als(X::Tensor{3}, mask::Tensor{3}; rank::Int=1, γ::Real=0, niter::Int=100)
     @assert size(X) == size(mask)
-
     N, M, K = size(X)
-
     A = randn(rank, N)
     B = randn(rank, M)
     C = randn(rank, K)
+    return als!(X, mask, A, B, C; γ, niter)
+end
+
+function als!(X::Tensor{3}, mask::Tensor{3}, A::Tensor{2}, B::Tensor{2}, C::Tensor{2}; γ::Real=0, niter::Int=100)
+    @assert size(X) == size(mask)
+    N, M, K = size(X)
+    rank = size(A, 1)
+    @assert size(A, 1) == size(B, 1) == size(C, 1) == rank
+    @assert size(X) == (size(A, 2), size(B, 2), size(C, 2))
 
     X_mask = masked(X, mask)
-
     errors = zeros(niter)
 
     for iter in 1:niter
