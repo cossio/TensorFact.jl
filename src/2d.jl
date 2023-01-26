@@ -1,6 +1,6 @@
 # 2-dimensional case
 
-function als(X::AbstractArray{<:Any,2}, mask::AbstractArray{<:Any,2}; rank::Int=1, γ::Real=0, niter::Int=100)
+function als(X::AbstractMatrix, mask::AbstractMatrix; rank::Int=1, γ::Real=0, niter::Int=100)
     @assert size(X) == size(mask)
 
     N, M = size(X)

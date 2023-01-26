@@ -46,7 +46,7 @@ function als(X::Tensor{3}, mask::Tensor{3}; rank::Int=1, γ::Real=0, niter::Int=
     return als!(X, mask, A, B, C; γ, niter)
 end
 
-function als!(X::Tensor{3}, mask::Tensor{3}, A::Tensor{2}, B::Tensor{2}, C::Tensor{2}; γ::Real=0, niter::Int=100)
+function als!(X::Tensor{3}, mask::Tensor{3}, A::AbstractMatrix, B::AbstractMatrix, C::AbstractMatrix; γ::Real=0, niter::Int=100)
     @assert size(X) == size(mask)
     N, M, K = size(X)
     rank = size(A, 1)
