@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. The format 
 
 ## Unreleased
 
+## v0.2.0
+
 - Fix masked case.
 - BREAKING: Changed order of arguments in `als`.
 

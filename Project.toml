@@ -1,7 +1,7 @@
 name = "TensorFactorizations"
 uuid = "cc4d5295-06e1-420e-aa8e-2bd5f6f39c3c"
 authors = ["Jorge Fernandez-de-Cossio-Diaz <j.cossio.diaz@gmail.com>"]
-version = "0.2.0-DEV"
+version = "0.2.0"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
