@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. The format 
 
 - Fix masked case.
 - BREAKING: Changed order of arguments in `als`.
+- Use Tullio.
 
 ## v0.1.0
 
