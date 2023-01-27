@@ -10,3 +10,4 @@ Tullio = "bc48ee85-29a4-5162-ae0b-a64e1601d4bc"
 
 [compat]
 julia = "1.8"
+Tullio = "0.3"
