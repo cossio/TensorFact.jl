@@ -1,12 +1,12 @@
 name = "TensorFactorizations"
 uuid = "cc4d5295-06e1-420e-aa8e-2bd5f6f39c3c"
 authors = ["Jorge Fernandez-de-Cossio-Diaz <j.cossio.diaz@gmail.com>"]
-version = "0.2.1"
+version = "0.2.2-DEV"
 
 [deps]
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 Tullio = "bc48ee85-29a4-5162-ae0b-a64e1601d4bc"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 
 [compat]
 julia = "1.8"
